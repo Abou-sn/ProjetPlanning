@@ -2,34 +2,46 @@ package client;
 
 import modele.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class ClientPlanning {
     public static void main(String[] args) {
-        String titre1 = "Muscu";
-        Date d1 = new Date(13,02,2025);
-        PlageHoraire ph1 = new PlageHoraire(new Horaire(20,45),new Horaire(21,15));
+        try {
+            Planning planning = new Planning(5);
 
-        String titre2 = "Manger";
-        Date d2 = new Date(14,02,2025);
-        PlageHoraire ph2 = new PlageHoraire(new Horaire(20,45),new Horaire(21,30));
+            // Instancie le scanner avec pour flux d'entrée le fichier texte
+            Scanner scanner = new Scanner(new File("data" + File.separator + "planning.txt"));
 
-        String titre3 = "Douche";
-        Date d3 = new Date(15,02,2025);
-        PlageHoraire ph3 = new PlageHoraire(new Horaire(21,30),new Horaire(22,00));
+            // La virgule est le délimiteur qui sépare les données
+            scanner.useDelimiter(",");
 
-        Reservation r1 = new Reservation(titre1,d1, ph1);
-        Reservation r2 = new Reservation(titre2,d2, ph2);
-        Reservation r3 = new Reservation(titre3,d3, ph3);
+            while (scanner.hasNext()) {
+                String intitule = scanner.next().trim();
+                int jour = scanner.nextInt();
+                int mois = scanner.nextInt();
+                int annee = scanner.nextInt();
 
-        Planning monPlanning = new Planning(3);
+                Date date = new Date(jour,mois,annee);
+                Horaire debut = new Horaire(scanner.nextInt(),scanner.nextInt());
+                Horaire fin = new Horaire(scanner.nextInt(),scanner.nextInt());
 
-        System.out.println(monPlanning);
+                PlageHoraire plageHoraire = new PlageHoraire(debut,fin);
 
-        monPlanning.ajout(r1); monPlanning.ajout(r2); monPlanning.ajout(r3);
+                planning.ajout(new Reservation(intitule,date,plageHoraire));
 
-        System.out.println(monPlanning);
+            }
 
-        System.out.println(Arrays.toString(monPlanning.getReservations(d2)));
+            System.out.println(planning);
+            scanner.close();
+        } catch (FileNotFoundException exception) {
+            System.out.println(exception.getMessage());
+        }
+
+
+
+
     }
 }
