@@ -180,7 +180,7 @@ public class Date {
     }
 
     public String toString() {
-        return  jour + " / " + mois + " / " + annee;
+        return  jour + "/" + mois + "/" + annee;
     }
 
 

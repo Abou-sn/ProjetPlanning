@@ -8,7 +8,7 @@ public class ClientDate {
         Date d = new Date(13, 1, 2026);
         Date d2 = new Date(12, 12, 2026);
 
-        System.out.println(d2.equals(new Date(12, 12, 2026)));
+        System.out.println(d2.compareTo(new Date(12, 12, 2026))==0);
 
         System.out.println(d.compareTo(d2));
 

@@ -5,6 +5,8 @@ import modele.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ClientPlanning {
@@ -20,7 +22,7 @@ public class ClientPlanning {
 
             while (scanner.hasNext()) {
                 String intitule = scanner.next().trim();
-                int jour = scanner.nextInt();
+                int jour = scanner.next();
                 int mois = scanner.nextInt();
                 int annee = scanner.nextInt();
 
@@ -36,7 +38,18 @@ public class ClientPlanning {
 
             System.out.println(planning);
             scanner.close();
-        } catch (FileNotFoundException exception) {
+        }
+
+        catch (FileNotFoundException exception) {
+            System.out.println(exception.getMessage());
+        }
+        catch (InputMismatchException exception) {
+            System.out.println(exception.getMessage());
+        }
+        catch (NoSuchElementException exception) {
+            System.out.println(exception.getMessage());
+        }
+        catch (IllegalStateException exception) { // Quand le scanner est fermé
             System.out.println(exception.getMessage());
         }
 

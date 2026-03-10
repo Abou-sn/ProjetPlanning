@@ -7,7 +7,7 @@ public class Planning {
     private static final int TAILLE_TAB = 3;
 
     public Planning(int parTailleTab) {
-        tabReservations = new Reservation[TAILLE_TAB];
+        tabReservations = new Reservation[parTailleTab];
     }
 
     /**
@@ -85,7 +85,7 @@ public class Planning {
 
 
     public String toString() {
-        return "Planning : " + Arrays.toString(tabReservations) ;
+        return "Planning : " + Arrays.toString(tabReservations) + "\n" ;
     }
 }
 

@@ -23,7 +23,7 @@ public class Reservation implements Comparable <Reservation>{
      * @return -1 si this est avant parReservation 1 si this est après et 0 dans les autres cas
      */
     public int compareTo(Reservation parReservation) {
-        if (this.chDate == parReservation.chDate) return chPlageHoraire.compareTo(parReservation.chPlageHoraire);
+        if (this.chDate.compareTo(parReservation.chDate)==0) return chPlageHoraire.compareTo(parReservation.chPlageHoraire);
         else return chDate.compareTo(parReservation.chDate);
     }
 
