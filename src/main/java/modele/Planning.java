@@ -39,6 +39,7 @@ public class Planning {
 
                 else if (tabReservations[i] == null){
                     tabReservations[i] = reservation;
+                    return;
                 }
 
 

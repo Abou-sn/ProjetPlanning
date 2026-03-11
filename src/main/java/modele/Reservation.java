@@ -27,8 +27,13 @@ public class Reservation implements Comparable <Reservation>{
         else return chDate.compareTo(parReservation.chDate);
     }
 
+    /**
+     * Une reservation est valide si sa date et sa plage horaire le sont.
+     *
+     * @return True si la reservation est valide False sinon
+     */
     public boolean estValide() {
-        return chPlageHoraire.estValide() || Date.estValide(chDate.getJour(),chDate.getMois(),chDate.getAnnee());
+        return chPlageHoraire.estValide() && Date.estValide(chDate.getJour(),chDate.getMois(),chDate.getAnnee());
     }
 
     public Date getDate() {

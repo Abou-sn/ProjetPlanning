@@ -43,22 +43,29 @@ public class ClientPlanning {
 
         catch (FileNotFoundException exception) { // Fichier non trouvé
             System.out.println(exception.getMessage());
+            System.exit(-1);
         }
+
         catch (InputMismatchException exception) { // Mauvais type
             System.out.println("Mauvais Type");
             System.out.println(exception.getMessage());
+            System.exit(-1);
         }
         catch (NoSuchElementException exception) { //L'elm n'existe pas
             System.out.println("L'element demandé n'existe pas");
             System.out.println(exception.getMessage());
+            System.exit(-1);
         }
         catch (IllegalStateException exception) { // Quand le scanner est fermé
             System.out.println("Le Scanner est fermé");
             System.out.println(exception.getMessage());
+            System.exit(-1);
+
         }
 
         catch (ExceptionPlanning exceptionPlanning){
             System.out.println(exceptionPlanning.getTypeErreur().getMessage());
+            System.exit(-1);
          }
 }
 }
