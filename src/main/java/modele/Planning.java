@@ -89,7 +89,15 @@ public class Planning {
 
 
     public String toString() {
-        return "Planning : " + Arrays.toString(tabReservations) + "\n" ;
+            String resultat = " ----------- Planning ----------- :\n";
+
+            for (Reservation res : tabReservations) {
+                if (res != null) {
+                    resultat = resultat + "- "+ res.toString() + "\n";
+                }
+            }
+
+            return resultat;
     }
 }
 
