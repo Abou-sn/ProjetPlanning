@@ -22,7 +22,7 @@ public class ClientPlanning {
 
             while (scanner.hasNext()) {
                 String intitule = scanner.next().trim();
-                int jour = scanner.next();
+                int jour = scanner.nextInt();
                 int mois = scanner.nextInt();
                 int annee = scanner.nextInt();
 
@@ -35,9 +35,10 @@ public class ClientPlanning {
                 planning.ajout(new Reservation(intitule,date,plageHoraire));
 
             }
+            scanner.close();
 
             System.out.println(planning);
-            scanner.close();
+
         }
 
         catch (FileNotFoundException exception) { // Fichier non trouvé
@@ -48,9 +49,11 @@ public class ClientPlanning {
             System.out.println(exception.getMessage());
         }
         catch (NoSuchElementException exception) { //L'elm n'existe pas
+            System.out.println("L'element demandé n'existe pas");
             System.out.println(exception.getMessage());
         }
         catch (IllegalStateException exception) { // Quand le scanner est fermé
+            System.out.println("Le Scanner est fermé");
             System.out.println(exception.getMessage());
         }
 
