@@ -23,27 +23,30 @@ public class Planning {
         return true ;
     }
 
-    public boolean ajout(Reservation reservation) {
-        if (reservation.estValide() && !estPlein()) {
+    public void ajout(Reservation reservation) throws ExceptionPlanning {
+        if (reservation.estValide()) {
 
             for (Reservation autreReservation  : tabReservations) { // Vérifie que la reservation est compatible avec les autres existante
                 if (autreReservation != null) {
                     if (reservation.compareTo(autreReservation) == 0) {
-                        System.out.println("Il y a déja un reservation à ce créneau");
-                        return false;
+                        throw new ExceptionPlanning(ErreursPlanning.RESERVATION_INCOMPATIBLE);
                     }
                 }
             }
 
             for(int i = 0 ; i< tabReservations.length; i++){
-                if (tabReservations[i] == null){
+                if (estPlein()) throw new ExceptionPlanning(ErreursPlanning.PLANNING_PLEIN);
+
+                else if (tabReservations[i] == null){
                     tabReservations[i] = reservation;
-                    return true;
                 }
+
+
             }
         }
-        System.out.println("Le tableau est plein ou la réservation est invalide");
-        return false;
+
+        else throw new ExceptionPlanning(ErreursPlanning.RESERVATION_NON_VALIDE);
+
     }
 
     public Reservation getReservation(Date parDate){

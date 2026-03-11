@@ -57,8 +57,8 @@ public class ClientPlanning {
             System.out.println(exception.getMessage());
         }
 
-
-
-
-    }
+        catch (ExceptionPlanning exceptionPlanning){
+            System.out.println(exceptionPlanning.getTypeErreur().getMessage());
+         }
+}
 }

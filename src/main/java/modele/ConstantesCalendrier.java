@@ -19,7 +19,7 @@ public class ConstantesCalendrier {
             }
         }
 
-        public enum Mois {
+    public enum Mois {
         JANVIER("janvier"), FEVRIER("fevrier"), MARS("mars"), AVRIL("avril"), MAI("mai"), JUIN("juin"), JUILLET("juillet"), AOUT("aout"), SEPTEMBRE("septembre"), OCTOBRE("octobre"), NOVEMBRE("novembre"), DECEMBRE("decembre");
 
         private final String mois;
