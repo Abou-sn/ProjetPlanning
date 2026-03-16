@@ -4,20 +4,16 @@ import modele.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class ClientPlanning {
+public class ClientPlanningCollections {
     public static void main(String[] args) {
+        PlanningCollections planning = new PlanningCollections();
+        System.out.println(planning);
         try {
-            Planning planning = new Planning(5);
-
-            // Instancie le scanner avec pour flux d'entrée le fichier texte
             Scanner scanner = new Scanner(new File("data" + File.separator + "planning.txt"));
-
-            // La virgule est le délimiteur qui sépare les données
             scanner.useDelimiter(",");
 
             while (scanner.hasNext()) {
@@ -37,7 +33,7 @@ public class ClientPlanning {
             }
             scanner.close();
 
-            System.out.println(planning);
+            System.out.println();
 
         }
 
@@ -61,10 +57,9 @@ public class ClientPlanning {
             System.exit(-1);
 
         }
-
-        catch (ExceptionPlanning exceptionPlanning){
+        catch (ExceptionPlanning exceptionPlanning) {
             System.out.println(exceptionPlanning.getTypeErreur().getMessage());
             System.exit(-1);
-         }
-}
+        }
+    }
 }

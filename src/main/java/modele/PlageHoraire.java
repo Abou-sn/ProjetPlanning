@@ -52,3 +52,4 @@ public class PlageHoraire implements Comparable<PlageHoraire>{
     }
 
 }
+
