@@ -25,24 +25,25 @@ public class PlanningCollections {
      * @param res la reservation à ajouter.
      * @throws ExceptionPlanning
      */
-     public void ajout(Reservation res) throws ExceptionPlanning{
-         if (!res.estValide()) throw new ExceptionPlanning(ErreursPlanning.RESERVATION_NON_VALIDE);
+    public void ajout(Reservation res) throws ExceptionPlanning {
+        if (!res.estValide()) throw new ExceptionPlanning(ErreursPlanning.RESERVATION_NON_VALIDE);
 
-         Iterator <Reservation> arrayIterateur = reservationArrayList.iterator();
-         while (arrayIterateur.hasNext()){
-             Reservation autreRes = arrayIterateur.next();
-             if (res.compareTo(autreRes)==0) throw new ExceptionPlanning(ErreursPlanning.RESERVATION_INCOMPATIBLE);
+        // Vérification ArrayList
+        for (Reservation autreRes : reservationArrayList) {
+            if (res.compareTo(autreRes) == 0)
+                throw new ExceptionPlanning(ErreursPlanning.RESERVATION_INCOMPATIBLE);
+        }
 
-         }
-         reservationArrayList.add(res);
+        // Vérification TreeSet
+        for (Reservation autreRes : reservationTreeSet) {
+            if (res.compareTo(autreRes) == 0)
+                throw new ExceptionPlanning(ErreursPlanning.RESERVATION_INCOMPATIBLE);
+        }
 
-         Iterator <Reservation> setIterateur = reservationTreeSet.iterator();
-         while (setIterateur.hasNext()){
-             Reservation autreRes = arrayIterateur.next();
-             if (res.compareTo(autreRes)==0) throw new ExceptionPlanning(ErreursPlanning.RESERVATION_INCOMPATIBLE);
-         }
-         reservationTreeSet.add(res);
-     }
+        // Ajout seulement si tout est OK
+        reservationArrayList.add(res);
+        reservationTreeSet.add(res);
+    }
 
     public String toString() {
         String array = "ArrayList : " + reservationArrayList.toString();

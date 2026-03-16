@@ -33,7 +33,7 @@ public class ClientPlanningCollections {
             }
             scanner.close();
 
-            System.out.println();
+            System.out.println(planning);
 
         }
 
