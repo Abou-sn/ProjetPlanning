@@ -15,7 +15,6 @@ public class Reservation implements Comparable <Reservation>{
         chTitre = parTitre;
         chDate = parDate;
         chPlageHoraire = parPlageHoraire;
-
     }
     /**
      *

@@ -1,6 +1,6 @@
 package client;
 
-import modele.*;
+import modele.*; 
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,57 +9,52 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ClientPlanningCollections {
+
     public static void main(String[] args) {
         PlanningCollections planning = new PlanningCollections();
-        System.out.println(planning);
         try {
             Scanner scanner = new Scanner(new File("data" + File.separator + "planning.txt"));
             scanner.useDelimiter(",");
-
             while (scanner.hasNext()) {
+                // trim() ôte le retour à la ligne au début de l'intitulé
                 String intitule = scanner.next().trim();
                 int jour = scanner.nextInt();
                 int mois = scanner.nextInt();
                 int annee = scanner.nextInt();
-
-                Date date = new Date(jour,mois,annee);
-                Horaire debut = new Horaire(scanner.nextInt(),scanner.nextInt());
-                Horaire fin = new Horaire(scanner.nextInt(),scanner.nextInt());
-
-                PlageHoraire plageHoraire = new PlageHoraire(debut,fin);
-
-                planning.ajout(new Reservation(intitule,date,plageHoraire));
-
+                int heureD = scanner.nextInt();
+                int quartHeureD = scanner.nextInt();
+                int heureF = scanner.nextInt();
+                int quartHeureF = scanner.nextInt();
+                try {
+                    planning.ajout(new Reservation(
+                            intitule,
+                            new DateCalendrier(jour, mois, annee),
+                            new PlageHoraire(new Horaire(heureD, quartHeureD),
+                                                        new Horaire(heureF, quartHeureF))));
+                }
+                catch (ExceptionPlanning e) {
+                    System.out.println(e.getTypeErreur());
+                }
             }
+            // scanner.next(); // pour tester l'exception NoSuchElementException
             scanner.close();
-
-            System.out.println(planning);
-
+            //scanner.nextLine(); // pour tester l'exception IllegalStateException
         }
 
-        catch (FileNotFoundException exception) { // Fichier non trouvé
-            System.out.println(exception.getMessage());
-            System.exit(-1);
+        catch (FileNotFoundException e) {
+            System.out.println("fichier non trouvé : " + e.getMessage());
         }
-        catch (InputMismatchException exception) { // Mauvais type
-            System.out.println("Mauvais Type");
-            System.out.println(exception.getMessage());
-            System.exit(-1);
+        // Les exceptions levées par la méthode nextInt()
+        catch (InputMismatchException e) {
+            System.out.println("entier attendu"); // à tester en modifiant le fichier
         }
-        catch (NoSuchElementException exception) { //L'elm n'existe pas
-            System.out.println("L'element demandé n'existe pas");
-            System.out.println(exception.getMessage());
-            System.exit(-1);
+        catch (NoSuchElementException e) {
+            System.out.println("scanner épuisé");
         }
-        catch (IllegalStateException exception) { // Quand le scanner est fermé
-            System.out.println("Le Scanner est fermé");
-            System.out.println(exception.getMessage());
-            System.exit(-1);
-
+        catch (IllegalStateException e) {
+            System.out.println("scanner fermé");
         }
-        catch (ExceptionPlanning exceptionPlanning) {
-            System.out.println(exceptionPlanning.getTypeErreur().getMessage());
-            System.exit(-1);
-        }
+        // affichage du planning
+        System.out.println(planning.toString());
     }
 }

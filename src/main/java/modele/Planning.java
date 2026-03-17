@@ -1,6 +1,5 @@
 package modele;
 
-import java.util.Arrays;
 
 public class Planning {
     private Reservation[] tabReservations;
@@ -93,7 +92,7 @@ public class Planning {
 
             for (Reservation res : tabReservations) {
                 if (res != null) {
-                    resultat = resultat + "- "+ res.toString() + "\n";
+                    resultat = resultat + "- "+ res + "\n";
                 }
             }
 
