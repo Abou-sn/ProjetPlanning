@@ -31,9 +31,11 @@ public class ClientPlanningCollections {
                             new DateCalendrier(jour, mois, annee),
                             new PlageHoraire(new Horaire(heureD, quartHeureD),
                                                         new Horaire(heureF, quartHeureF))));
+
                 }
                 catch (ExceptionPlanning e) {
                     System.out.println(e.getTypeErreur());
+
                 }
             }
             // scanner.next(); // pour tester l'exception NoSuchElementException
@@ -56,5 +58,6 @@ public class ClientPlanningCollections {
         }
         // affichage du planning
         System.out.println(planning.toString());
+        System.out.println(planning.getReservations(new DateCalendrier(5,1,2026)));
     }
 }

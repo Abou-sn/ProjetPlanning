@@ -38,6 +38,7 @@ public class Reservation implements Comparable <Reservation>{
     public Date getDate() {
         return chDate;
     }
+    public String getTitre(){return chTitre;}
 
     /**
      * Affiche la reservation sous forme de chaine de caractère
