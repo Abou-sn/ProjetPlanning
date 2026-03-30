@@ -43,6 +43,7 @@ public class DateCalendrier extends Date implements Comparable <Date> {
     public int getNumeroSemaine() {
         return numeroSemaine;
     }
+
     @Override
     public DateCalendrier dateDuLendemain(){
         Date dateLend = super.dateDuLendemain();
