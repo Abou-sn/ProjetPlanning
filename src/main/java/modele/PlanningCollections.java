@@ -1,11 +1,13 @@
 package modele;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class PlanningCollections {
      private ArrayList <Reservation> reservationArrayList;
      private TreeSet <Reservation> reservationTreeSet;
+     private TreeMap< Integer, TreeSet<Reservation> > reservationTreeMap;
 
     /**
      * Constructeur qui instancie les Arraylist et TreeSet
@@ -41,6 +43,18 @@ public class PlanningCollections {
         // Ajout seulement si tout est OK
         reservationArrayList.add(res);
         reservationTreeSet.add(res);
+
+        DateCalendrier date = new DateCalendrier(res.getDate().jour,res.getDate().mois,res.getDate().annee);
+        int numSemaine = date.getNumeroSemaine();
+
+        if ( reservationTreeMap.containsKey(numSemaine)) reservationTreeMap.get(numSemaine).add(res);
+        else {
+            TreeSet<Reservation> setRes = new TreeSet<Reservation>() ;
+            setRes.add(res);
+            reservationTreeMap.put(numSemaine, setRes);
+        }
+
+
     }
 
     /**
@@ -59,7 +73,7 @@ public class PlanningCollections {
         else return reservationsTree ;
     }
 
-    public TreeSet <Reservation> getReservationd(String parString){
+    public TreeSet <Reservation> getReservations(String parString){
         TreeSet <Reservation> reservationsTree = new TreeSet<Reservation>();
         for (Reservation res : reservationTreeSet){
             if (res.getTitre().equals(parString)) reservationsTree.add(res);
@@ -72,7 +86,9 @@ public class PlanningCollections {
     public String toString() {
         String array = "ArrayList : " + reservationArrayList.toString();
         String set =  "TreeSet    : " + reservationTreeSet.toString();
+        String map =  "TreeMap    : " + reservationTreeMap.toString();
+        int mapTaille = reservationTreeMap.size();
 
-        return array + "\n" + set ;
+        return array + "\n" + set + "\n" + map + "\n" + mapTaille;
     }
 }

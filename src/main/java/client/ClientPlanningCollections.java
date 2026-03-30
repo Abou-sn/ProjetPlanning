@@ -57,6 +57,7 @@ public class ClientPlanningCollections {
             System.out.println("scanner fermé");
         }
         // affichage du planning
+        System.out.println(planning.getReservations("Musculation"));
         System.out.println(planning.toString());
         System.out.println(planning.getReservations(new DateCalendrier(5,1,2026)));
     }
