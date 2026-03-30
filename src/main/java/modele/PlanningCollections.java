@@ -15,6 +15,7 @@ public class PlanningCollections {
      public PlanningCollections (){
          reservationArrayList = new ArrayList<Reservation>();
          reservationTreeSet = new TreeSet<Reservation>();
+         reservationTreeMap = new TreeMap<>();
      }
 
     /**
